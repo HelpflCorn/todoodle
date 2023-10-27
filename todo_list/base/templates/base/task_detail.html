@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f6f6f6;
+            margin: 0;
+            padding: 0;
+            color: #000; 
+        }
+
+        .header {
+            background-color: #1976D2; 
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            margin: 0;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .task-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #000; 
+        }
+
+        .task-info {
+            margin-bottom: 10px;
+            color: #000; 
+        }
+
+        .task-status {
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #000; 
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Task Details</h1>
+    </div>
+    <div class="container">
+        <h1 class="task-title">Task: {{ task.task_title }}</h1>
+        <p class="task-info">Details: "{{ task.description }}"</p>
+        <p class="task-info">Created on: "{{ task.created_date }}"</p>
+        {% if task.complete %}
+            <p class="task-status">Task completed</p>
+        {% else %}
+            <p class="task-status">Task not completed</p>
+        {% endif %}
+    </div>
+</body>
+</html>

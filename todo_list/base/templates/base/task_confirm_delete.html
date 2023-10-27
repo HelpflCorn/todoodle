@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Task</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif; 
+            background-color: #f6f6f6;
+            margin: 0;
+            padding: 0;
+            color: #000; 
+        }
+
+        .header {
+            background-color: #1976D2; 
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            margin: 0;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .confirmation-text {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #000; 
+        }
+
+        .task-details {
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        .task-status {
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        .delete-button {
+            background-color: #fc382a; 
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Delete Task</h1>
+    </div>
+    <div class="container">
+        <a href="{% url 'tasks' %}" class="go-back-link"><i class="fas fa-arrow-left"></i> Go back</a>
+        <form method="POST">
+            {% csrf_token %}
+            <p class="confirmation-text">Are you sure you want to delete "{{ task }}"?</p>
+            <p class="task-details">Task details are: "{{ task.description }}", created on "{{ task.created_date }}"</p>
+            {% if task.complete %}
+                <p class="task-status">Task completed</p>
+            {% else %}
+                <p class="task-status">Task not completed</p>
+            {% endif %}
+            <input type="submit" value="Delete" class="delete-button">
+        </form>
+    </div>
+</body>
+</html>
